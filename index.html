@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+
+<html lang="en">
+	<head>
+
+        <link type="text/css" rel="stylesheet" href="main.css" />
+        <script type="text/javascript" src="jquery-1.10.2.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+        <TITLE>Hot or Cold!?</TITLE>
+    </head>
+    
+    <body>
+        
+        <div class="spacer"></div>
+<div id="container">
+    <h1>Hot or Cold?</h1>
+    <p> I'm thinking of a number between 1 and 100. See if you can guess what number I'm thinking of.</p>
+        <div id="inputContainer">
+            <input id="userGuess" type="text"/>
+            <button id="guess">Guess!</button>
+        </div>
+        
+        <div id= "responseBox">
+            <div id= "warmer" class="temperature">Warmer</div>
+            <div id= "colder" class="temperature">Colder</div>
+            <div id= "noString" class="alert">Enter a guess!</div>
+            <div id= "over100" class="alert">You know the number is less than 100. Try again</div>
+            <div id= "under1" class="alert">You know the number is greater than 0. Try again.</div>
+        </div>
+        
+        <div id="guesses">    Your guesses so far:
+        </div>
+        <div id="congrats"> Congratulations! You've done it!
+        </div>
+        
+        <div id="restartContainer">
+            <button id="restart">Play again?</button>
+        </div>
+</div>
+    </body>
+
+</html>
