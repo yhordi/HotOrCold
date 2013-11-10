@@ -22,6 +22,7 @@ $(document).ready(function () {
             $("#congrats").fadeIn("fast");
             $("#restart").show("slow", function () {});
             $(".lowHigh").hide();
+            $(".temperature").hide();
         }
 
         else if (userAttempt === "") {

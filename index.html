@@ -6,7 +6,7 @@
 	<head>
         <link type="text/css" rel="stylesheet" href="main.css" />
         <script type="text/javascript" src="jquery-1.10.2.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
         <script type="text/javascript" src="script.js"></script>
         <TITLE>Hot or Cold!?</TITLE>
     </head>
@@ -23,14 +23,16 @@
         </div>
         
         <div id= "responseBox">
+            <div class="lowHigh" id="tooLow">The number I'm thinking of is higher than that.</div>
+            <div class="lowHigh" id="tooHigh">The number I'm thinking of is lower than that.</div>
             <div id= "warmer" class="temperature">Warmer</div>
             <div id= "colder" class="temperature">Colder</div>
             <div id= "noString" class="alert">Enter a guess!</div>
             <div id= "over100" class="alert">You know the number is less than 100. Try again</div>
             <div id= "under1" class="alert">You know the number is greater than 0. Try again.</div>
         </div>
-        
-        <div id="guesses">    Your guesses so far:
+        <h2>Your guesses so far:</h2>
+        <div id="guesses">
         </div>
         <div id="congrats"> Congratulations! You've done it!
         </div>
