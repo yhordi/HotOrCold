@@ -1,6 +1,8 @@
 $(document).ready(function () {
+
     var num = Math.floor((Math.random() * 100) + 1);
     console.log(num);
+    var guesses = [];
     
     $(".temperature").hide();
 
@@ -10,51 +12,72 @@ $(document).ready(function () {
 
     $(".alert").hide();
 
+    $(".lowHigh").hide();
+
     $("#guess").click(function () {
         var userAttempt = $("#userGuess").val();
-    
-    if (userAttempt < num && userAttempt > 0) {
-        $("#warmer").hide();
-        $("#colder").show("slow",function(){});
-        $("#guesses").append(" " + userAttempt);
-        $(".alert").hide();
-    }
-    if (userAttempt === ""){
-        $("#noString").show();
-    }
-    if (userAttempt > num && userAttempt < 100) {
-        $("#colder").hide();
-        $("#warmer").show("slow", function(){});
-        $("#guesses").append(" " + userAttempt);
-        $(".alert").hide();
-    }
-    if (userAttempt > 100) {
-        $(".alert").hide();
-    	$("#over100").show();
-        $(".temperature").hide();
-    }
+        guesses.push(parseInt(userAttempt));
+        distance = Math.abs(guesses[guesses.length-1] - num);
+        if (distance === 0) {
+            $("#congrats").fadeIn("fast");
+            $("#restart").show("slow", function () {});
+            $(".lowHigh").hide();
+        }
 
-    if (userAttempt < 0) {
-        $(".alert").hide();
-    	$("#under1").show();
-        $(".temperature").hide();
-    }
-    if (userAttempt == num) {
-        $("#congrats").fadeIn("fast");
-        $("#restart").show("slow", function(){});
-    }
-    
+        else if (userAttempt === "") {
+            $("#noString").show();
+
+        } 
+        else if (guesses.length <= 1) {
+            if (userAttempt < num && userAttempt > 0) {
+                $("#tooLow").show("fast")
+            }
+            else $("#tooHigh").show("fast")
+                $("#guesses").append(" " + userAttempt);
+        }
+        else if (userAttempt > 100) {
+            $(".alert").hide();
+            $("#over100").show();
+            $(".temperature").hide();
+            $(".lowHigh").hide();
+            
+        } else if (userAttempt <= 0) {
+            $(".alert").hide();
+            $("#under1").show();
+            $(".temperature").hide();
+            $(".lowHigh").hide();
+            
+        } else if (distance > Math.abs(guesses[guesses.length - 2] - num)) {
+            $("#warmer").hide();
+            $("#colder").show("slow", function () {});
+            $("#guesses").append(" " + userAttempt);
+            $(".alert").hide();
+            $(".lowHigh").hide();
+                    
+        } else if (distance < Math.abs(guesses[guesses.length - 2] - num)) {
+            $("#colder").hide();
+            $("#warmer").show("slow", function () {});
+            $("#guesses").append(" " + userAttempt);
+            $(".alert").hide();
+            $(".lowHigh").hide();
+     
+        }
+
+        console.log(guesses);
+        console.log("distance " + distance)
 
     });
-     $("#restart").click(function () {
-         num = Math.floor((Math.random() * 100) + 1);
-    console.log(num);
+
+    $("#restart").click(function () {
+        num = Math.floor((Math.random() * 100) + 1);
+        console.log(num);
         $("#congrats").hide();
         $("#restart").hide();
         $("#noString").hide();
-});   
-    
-	
-});
+        $("#guesses").empty();
+        $("temperature").hide();
+        guesses = [];
+    });
 
-	
+
+});
